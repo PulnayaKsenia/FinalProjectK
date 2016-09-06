@@ -10,7 +10,7 @@ public class Bank extends Card {
 
     @Override
     public String getCardType() {
-        return "Bank";
+        return "Bank Card";
     }
 
     @Override

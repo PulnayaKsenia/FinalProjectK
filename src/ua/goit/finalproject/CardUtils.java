@@ -3,13 +3,14 @@ package ua.goit.finalproject;
 import ua.goit.finalproject.Cards.*;
 import ua.goit.finalproject.Exceptions.WrongCardNumberException;
 import ua.goit.finalproject.Exceptions.WrongCardTypeException;
+import ua.goit.finalproject.Exceptions.WrongGenerateCardException;
 
 import java.util.ArrayList;
 
 public class CardUtils {
-    public Card selectCard() throws WrongCardTypeException {
+    public Card selectCard(String card) throws WrongCardTypeException {
         try {
-            CardsEnum cards = CardsEnum.valueOf(ScannerUtils.readString());
+            CardsEnum cards = CardsEnum.valueOf(card);
             switch (cards) {
                 case Bank:
                     return new Bank();
@@ -31,21 +32,24 @@ public class CardUtils {
     public String getNumberOfCard(String number, int amount, Card card) throws WrongCardNumberException {
         if (!checkDigits(number)) {
             throw new WrongCardNumberException("Make sure you enter only numbers!");
-        } else if (card.checkAmount(amount)) {
+        } else {
+            card.checkAmount(amount);
+            {
+                return number;
+            }
         }
-        return number;
     }
 
-    public String getBankID(String bankID) {
+    public String getBankID(String bankID) throws WrongGenerateCardException {
         if (!checkDigits(bankID) | bankID.length() != 6) {
-            System.out.println("Make sure you enter 6 numerals!");
+            throw new WrongGenerateCardException("Make sure you enter 6 numerals!");
         }
         return bankID;
     }
 
-    public String getIssuedCard(String issuedCard) {
+    public String getIssuedCard(String issuedCard) throws WrongGenerateCardException {
         if (!checkDigits(issuedCard) | issuedCard.length() != 10) {
-            System.out.println("Make sure you enter 10 numerals!");
+            throw new WrongGenerateCardException("Make sure you enter 10 numerals!");
         }
         return issuedCard;
     }
@@ -59,9 +63,9 @@ public class CardUtils {
         return true;
     }
 
-    public int getAmount(int amount) {
+    public int getAmount(int amount) throws WrongGenerateCardException {
         if (amount <= 0) {
-            System.out.println("Amount should be a positive number!");
+            throw new WrongGenerateCardException("Amount should be a positive number!");
         }
         return amount;
     }

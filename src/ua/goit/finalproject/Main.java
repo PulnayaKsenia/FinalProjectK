@@ -3,6 +3,7 @@ package ua.goit.finalproject;
 import ua.goit.finalproject.Cards.Card;
 import ua.goit.finalproject.Exceptions.WrongCardNumberException;
 import ua.goit.finalproject.Exceptions.WrongCardTypeException;
+import ua.goit.finalproject.Exceptions.WrongGenerateCardException;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class Main {
 
     private static void validate() throws WrongCardTypeException, WrongCardNumberException {
         CardUtils cardUtils = new CardUtils();
-        Card card = cardUtils.selectCard();
+        Card card = cardUtils.selectCard(ScannerUtils.readString());
 
         System.out.println("Enter number of your card: ");
         String number = ScannerUtils.readString();
@@ -69,7 +70,7 @@ public class Main {
                 "enter 10 zeros.\n");
     }
 
-    private static void generate() {
+    private static void generate() throws WrongGenerateCardException {
         CardUtils cardUtils = new CardUtils();
 
         System.out.println("Enter 6 numerals of bank ID:");

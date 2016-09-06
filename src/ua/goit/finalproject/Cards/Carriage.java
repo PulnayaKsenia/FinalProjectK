@@ -1,11 +1,9 @@
 package ua.goit.finalproject.Cards;
 
-import ua.goit.finalproject.Cards.Card;
-
 public class Carriage extends Card {
     @Override
     public String getCardType() {
-        return "Railway";
+        return "Number Of Railway Carriage";
     }
 
     @Override

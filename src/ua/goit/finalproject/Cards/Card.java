@@ -1,5 +1,7 @@
 package ua.goit.finalproject.Cards;
 
+import ua.goit.finalproject.Exceptions.WrongCardNumberException;
+
 public abstract class Card {
     String cardNumber;
 
@@ -15,11 +17,10 @@ public abstract class Card {
 
     public abstract int getAmountOfNumbers();
 
-    public boolean checkAmount(int amount) {
+    public void checkAmount(int amount) throws WrongCardNumberException {
         if (amount != getAmountOfNumbers()) {
-            System.out.println("Number of numerals of " + getCardType() + " must be " + getAmountOfNumbers() + "!");
+            throw new WrongCardNumberException("Number of numerals of " + getCardType() + " must be " + getAmountOfNumbers() + "!");
         }
-        return false;
     }
 
     public String getCardInfo() {
