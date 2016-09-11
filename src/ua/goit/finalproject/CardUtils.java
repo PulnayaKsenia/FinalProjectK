@@ -3,7 +3,7 @@ package ua.goit.finalproject;
 import ua.goit.finalproject.Cards.*;
 import ua.goit.finalproject.Exceptions.WrongCardNumberException;
 import ua.goit.finalproject.Exceptions.WrongCardTypeException;
-import ua.goit.finalproject.Exceptions.WrongGenerateCardException;
+import ua.goit.finalproject.Exceptions.WrongAmountException;
 
 import java.util.ArrayList;
 
@@ -29,45 +29,30 @@ public class CardUtils {
         return null;
     }
 
-    public String getNumberOfCard(String number, int amount, Card card) throws WrongCardNumberException {
-        if (!checkDigits(number)) {
-            throw new WrongCardNumberException("Make sure you enter only numbers!");
-        } else {
-            card.checkAmount(amount);
-            {
-                return number;
-            }
+    public void getBankID(String bankID) throws WrongCardNumberException {
+        if (bankID.length() != 6) {
+            throw new WrongCardNumberException("Make sure you enter 6 numerals!");
         }
     }
 
-    public String getBankID(String bankID) throws WrongGenerateCardException {
-        if (!checkDigits(bankID) | bankID.length() != 6) {
-            throw new WrongGenerateCardException("Make sure you enter 6 numerals!");
+    public void getIssuedCard(String issuedCard) throws WrongCardNumberException {
+        if (issuedCard.length() != 10) {
+            throw new WrongCardNumberException("Make sure you enter 10 numerals!");
         }
-        return bankID;
     }
 
-    public String getIssuedCard(String issuedCard) throws WrongGenerateCardException {
-        if (!checkDigits(issuedCard) | issuedCard.length() != 10) {
-            throw new WrongGenerateCardException("Make sure you enter 10 numerals!");
-        }
-        return issuedCard;
-    }
-
-    public boolean checkDigits(String input) {
+    public void checkDigits(String input) throws WrongCardNumberException {
         for (int i = 0; i < input.length(); i++) {
             if (!Character.isDigit(input.charAt(i))) {
-                return false;
+                throw new WrongCardNumberException("Make sure you enter only numbers!");
             }
         }
-        return true;
     }
 
-    public int getAmount(int amount) throws WrongGenerateCardException {
+    public void getAmount(int amount) throws WrongAmountException {
         if (amount <= 0) {
-            throw new WrongGenerateCardException("Amount should be a positive number!");
+            throw new WrongAmountException("Amount should be a positive number!");
         }
-        return amount;
     }
 
     public String generateCards(ArrayList<String> validNumbers, int amount) {
@@ -78,7 +63,7 @@ public class CardUtils {
         }
 
         if (validCards.size() == amount) {
-            return "New valid cards are " + validCards.toString();
+            return "New valid cards are " + validCards.toString() + ".";
         } else {
             return "It was not possible to generate " + amount + " cards.\n" +
                     "There was not enough combinations for this amount.\n" +
