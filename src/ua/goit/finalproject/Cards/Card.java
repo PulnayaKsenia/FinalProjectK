@@ -1,13 +1,9 @@
 package ua.goit.finalproject.Cards;
 
-import ua.goit.finalproject.Exceptions.WrongCardNumberException;
+import ua.goit.finalproject.Exceptions.WrongAmountException;
 
 public abstract class Card {
     String cardNumber;
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
 
     public String getCardNumber() {
         return cardNumber;
@@ -17,9 +13,9 @@ public abstract class Card {
 
     public abstract int getAmountOfNumbers();
 
-    public void checkAmount(int amount) throws WrongCardNumberException {
+    public void checkAmount(int amount) throws WrongAmountException {
         if (amount != getAmountOfNumbers()) {
-            throw new WrongCardNumberException("Number of numerals of " + getCardType() + " must be " + getAmountOfNumbers() + "!");
+            throw new WrongAmountException("Number of numerals of " + getCardType() + " must be " + getAmountOfNumbers() + "!");
         }
     }
 
