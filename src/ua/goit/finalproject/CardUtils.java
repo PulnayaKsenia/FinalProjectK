@@ -79,9 +79,10 @@ public class CardUtils {
 
         if (validCards.size() == amount) {
             return "New valid cards are " + validCards.toString();
-        } else
+        } else {
             return "It was not possible to generate " + amount + " cards.\n" +
                     "There was not enough combinations for this amount.\n" +
                     "New possible numbers of cards are:\n" + validCards.toString();
+        }
     }
 }

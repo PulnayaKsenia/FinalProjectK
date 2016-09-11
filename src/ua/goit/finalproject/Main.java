@@ -15,6 +15,7 @@ public class Main {
                 "If you need to do this choose VALIDATE or GENERATE or enter OUT for exit:");
 
         for (; ; ) {
+            System.out.println("Choose VALIDATE or GENERATE or enter OUT for exit:");
             String choice = ScannerUtils.readString();
 
             try {
@@ -22,17 +23,13 @@ public class Main {
                     case "VALIDATE":
                         printValidationParams();
                         validate();
-                        continueProgram();
                         break;
                     case "GENERATE":
                         printGenerationParams();
                         generate();
-                        continueProgram();
                         break;
                     case "OUT":
                         System.exit(1);
-                    default:
-                        System.out.println("Choose VALIDATE or GENERATE or enter OUT for exit:");
                         break;
                 }
             } catch (Exception e) {
@@ -58,9 +55,9 @@ public class Main {
         card.setCardNumber(cardNumber);
 
         int sum = LuhnAlgorithm.calculateSum(cardNumber);
-        boolean isMod10 = LuhnAlgorithm.isCardMod10(sum);
+        boolean isMod10 = card.isCardMod10(sum);
 
-        System.out.println(isMod10 ? card.getCardInfo() + " is correct" :
+        System.out.println(isMod10 ? card.getCardInfo() + " is correct!" :
                 card.getCardInfo() + " is not correct");
     }
 
@@ -89,10 +86,5 @@ public class Main {
         String validCards = cardUtils.generateCards(validNumbers, amount);
 
         System.out.println(validCards);
-    }
-
-    private static void continueProgram() {
-        System.out.println("\nIf you need to continue use this program, choose VALIDATE or GENERATE\n" +
-                "or enter OUT for exit.");
     }
 }

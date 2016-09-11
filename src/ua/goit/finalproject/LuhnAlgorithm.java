@@ -25,13 +25,8 @@ public class LuhnAlgorithm {
         return sum;
     }
 
-    public static boolean isCardMod10(int sum) {
-        return sum % 10 == 0;
-    }
-
-    public static ArrayList<String> generateCards(String bankID, String initCardNumber, int amountOfCards) {
+ public static ArrayList<String> generateCards(String bankID, String initCardNumber, int amountOfCards) {
         ArrayList<String> validCardsList = new ArrayList<>();
-        boolean cardMod10;
 
         int bankIDSum = calculateSum(bankID);
         long initCardNumberLong = Long.parseLong(initCardNumber);
@@ -44,7 +39,7 @@ public class LuhnAlgorithm {
 
             int cardSum = calculateSum(initCardNumber);
             int finalSum = bankIDSum + cardSum;
-            cardMod10 = isCardMod10(finalSum);
+            boolean cardMod10 = finalSum % 10 == 0;
 
             String smallCard = String.copyValueOf(initCardNumber.toCharArray(), 0, initCardNumber.length() - 1);
             String smallCardSum = String.valueOf((calculateSum(smallCard) + bankIDSum) * 9);
@@ -61,7 +56,6 @@ public class LuhnAlgorithm {
                 validCard.append(bankID).append(initCardNumber);
                 validCardsList.add(validCard.toString());
                 amountOfCards--;
-
             }
         } while (amountOfCards > 0);
 
