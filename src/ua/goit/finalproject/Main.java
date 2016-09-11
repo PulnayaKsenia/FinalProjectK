@@ -48,7 +48,6 @@ public class Main {
 
         int amount = number.length();
         card.checkAmount(amount);
-        cardUtils.getAmount(amount);
 
         int sum = LuhnAlgorithm.calculateSum(number);
         boolean isMod10 = card.isCardMod10(sum);
@@ -66,16 +65,16 @@ public class Main {
         System.out.println("Enter 6 numerals of bank ID:");
         String bankId = ScannerUtils.readString();
         cardUtils.checkDigits(bankId);
-        cardUtils.getBankID(bankId);
+        cardUtils.checkBankID(bankId);
 
         System.out.println("Enter 10 numerals of last issued card:");
         String issued = ScannerUtils.readString();
         cardUtils.checkDigits(issued);
-        cardUtils.getIssuedCard(issued);
+        cardUtils.checkIssuedCard(issued);
 
         System.out.println("Enter amount of cards you'd like to generate:");
         int amount = ScannerUtils.readNumber();
-        cardUtils.getAmount(amount);
+        cardUtils.checkAmount(amount);
 
         ArrayList<String> validNumbers = LuhnAlgorithm.generateCards(bankId, issued, amount);
         String validCards = cardUtils.generateCards(validNumbers, amount);

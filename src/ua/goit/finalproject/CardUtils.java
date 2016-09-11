@@ -29,13 +29,13 @@ public class CardUtils {
         return null;
     }
 
-    public void getBankID(String bankID) throws WrongCardNumberException {
+    public void checkBankID(String bankID) throws WrongCardNumberException {
         if (bankID.length() != 6) {
             throw new WrongCardNumberException("Make sure you enter 6 numerals!");
         }
     }
 
-    public void getIssuedCard(String issuedCard) throws WrongCardNumberException {
+    public void checkIssuedCard(String issuedCard) throws WrongCardNumberException {
         if (issuedCard.length() != 10) {
             throw new WrongCardNumberException("Make sure you enter 10 numerals!");
         }
@@ -49,7 +49,7 @@ public class CardUtils {
         }
     }
 
-    public void getAmount(int amount) throws WrongAmountException {
+    public void checkAmount(int amount) throws WrongAmountException {
         if (amount <= 0) {
             throw new WrongAmountException("Amount should be a positive number!");
         }
