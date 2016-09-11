@@ -23,6 +23,10 @@ public abstract class Card {
         }
     }
 
+    public boolean isCardMod10(int sum) {
+        return sum % 10 == 0;
+    }
+
     public String getCardInfo() {
         return "Your " + getCardType() + " with number " + getCardNumber();
     }
